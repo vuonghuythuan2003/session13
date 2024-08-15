@@ -1,19 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bài tập về nhà số 10</title>
 </head>
+
 <body>
+    <button onclick = "addToCart()"> mua hàng</button>
+    <button onclick = "displayCart()"> hiển thị</button>
+
     <script>
-        function Product(name, price , quantity){
-            this.name = name;
-            this.price = price;
-            this.quantity = quantity;
-        }
+        let products = [
+            {
+                name: "iphone5",
+                price: 5000
+            },
+            {
+                name: "iphone6",
+                price: 6000
+            },
+            {
+                name: "iphone15",
+                price: 12000
+            }];
         let shoppingCart = [];
-        fucntioni8
+
+        function addToCart(productName, price, quantity) {
+            // lấy dữ liệu từ người dùng nhập 
+            let productName = prompt("Mời nhập tên sản phẩm");
+            let findProducts = products.find((item)=> { // cái này trả về các đối tượng trong mảng
+                return item.name == nameProduct;
+            })
+            console.log("findProducts",findProducts);
+            if(!findProducts) {
+                console.log("san pham khong co trong gio hang")
+            }
+            else{
+                let findIndex = shoppingCart.findIndex((item)=> {
+                    return item.name == nameProduct;
+                }) 
+                if(findIndex == -1) {
+                    shoppingCart.push({...findProduct, quantity:1});
+                }
+                else{
+                    shoppingCart[findIndex].quantity = ++shoppingCart[findIndex].quantity;
+                }
+                console.log("Giỏ hàng của bạn hiện tại");            
+            }
+        }
+        function removeFromCart(productName){
+            let nameProduct = prompt("Nhập tên cần xóa");
+            let findIndex = shoppingCart.find((item) => {
+                return item.name == nameProduct;
+            })
+            if(findIndex==-1){
+                console.log("Sản phẩm bạn muốn xóa không có trong giỏ hang");
+            }
+            else {
+                shoppingCart.splite(findIndex, 1);
+                console.log("giỏ hang hiện tại", shoppingCart);
+            }
+        }
+        // hàm show sản phẩm trong giỏ hàng 
+        function displayCart(){
+            if(shoppingCart.length == 0) {
+                document.write("Giỏ hàng trống");
+            }
+            else{
+                document.write(JSON.stringify(shoppingCart));
+            }
+        }
+
     </script>
 </body>
+
 </html>
