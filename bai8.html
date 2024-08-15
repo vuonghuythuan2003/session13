@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập về nhà số 8</title>
+</head>
+<body>
+    <script>
+        let users = [];
+
+        function validateUserName(user_name) {
+            if (user_name && user_name.length >= 3) {
+                return true;
+            } else {
+                alert("Vui lòng để tên không được để trống và nhập tên trên 3 kí tự");
+                return false;
+            }
+        }
+
+        function validatePassword(password) {
+            if (password && password.length >= 8) {
+                return true;
+            } else {
+                alert("Vui lòng không được để trống và nhập password trên 8 kí tự");
+                return false;
+            }
+        }
+
+        function validateEmail(email) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email && emailPattern.test(email)) {
+                return true;
+            } else {
+                alert("Vui lòng nhập email đúng định dạng và không để trống");
+                return false;
+            }
+        }
+
+        function isEmailUnique(email) {
+            for (let user of users) {
+                if (email === user.email) {
+                    alert("Email này đã được sử dụng vui lòng dùng email khác");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function registerUser() {
+            let user = {};
+            user.user_name = prompt("Nhập vào tên của User");
+            if (!validateUserName(user.user_name)) return;
+
+            user.password = prompt("Nhập vào mật khẩu của User");
+            if (!validatePassword(user.password)) return;
+
+            user.email = prompt("Nhập vào email của User");
+            if (!validateEmail(user.email)) return;
+            if (!isEmailUnique(user.email)) return;
+
+            user.id = users.length + 1;
+            users.push(user);
+            alert("Đăng ký thành công, chúc mừng!");
+            console.log("Thông tin người dùng đã được thêm:", user);
+        }
+
+        function loginUser() {
+            let email = prompt("Vui lòng nhập email của bạn");
+            let password = prompt("Vui lòng nhập password của bạn");
+
+            let foundUser = users.find(function(user) {
+                return user.email === email && user.password === password;
+            });
+
+            if (foundUser) {
+                alert("Đăng nhập thành công!");
+                console.log("Thông tin người dùng đã đăng nhập:", foundUser);
+            } else {
+                alert("Đăng nhập thất bại. Vui lòng kiểm tra lại email và mật khẩu.");
+            }
+        }
+
+        function mainMenu() {
+            let choice;
+            do {
+                choice = prompt("Chọn 1 để đăng ký, 2 để đăng nhập, 3 để thoát:");
+
+                switch (choice) {
+                    case "1":
+                        registerUser();
+                        break;
+                    case "2":
+                        loginUser();
+                        break;
+                    case "3":
+                        alert("Thoát chương trình.");
+                        break;
+                    default:
+                        alert("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
+                }
+            } while (choice !== "3");
+        }
+
+        mainMenu();
+    </script>
+</body>
+</html>

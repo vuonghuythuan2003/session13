@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập về nhà số 2</title>
+</head>
+
+<body>
+    <script>
+        let information = {
+            id: '',
+            name: '',
+            phone: '',
+            address: '',
+            email: ''
+        };
+
+        information.id = prompt("Nhập ID:");
+        information.name = prompt("Nhập tên:");
+        information.phone = prompt("Nhập số điện thoại:");
+        information.address = prompt("Nhập địa chỉ:");
+        information.email = prompt("Nhập địa chỉ email:");
+
+        delete information.address;
+        
+        console.log("Thông tin cá nhân:");
+        console.log("ID: " + information.id);
+        console.log("Tên: " + information.name);
+        console.log("Số điện thoại: " + information.phone);
+        console.log("Địa chỉ: " + information.address);
+        console.log("Địa chỉ: " + information.email);
+
+        console.log(information);
+
+    </script>
+</body>
+
+</html>

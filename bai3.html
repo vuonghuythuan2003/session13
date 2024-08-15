@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập về nhà số 3</title>
+</head>
+
+<body>
+    <script>
+        let students = [];
+        let number = +prompt("Nhập số lượng sinh viên:");
+        for (let i = 0; i < number; i++) {
+            let student = {
+                id: '',
+                name: ''
+            };
+            student.id = prompt(`Nhập ID của sinh viên thứ ${(i + 1)}`);
+            student.name = prompt(`Nhập name của sinh viên thứ ${(i + 1)}`);
+            students.push(student);
+        }
+        console.log("Danh sách sinh viên:");
+        console.log(students);
+    </script>
+</body>
+
+</html>

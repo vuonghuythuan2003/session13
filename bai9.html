@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập về nhà số 9</title>
+</head>
+<body>
+    <script>
+        function Contact(name, phone, email) {
+            this.name = name;
+            this.phone = phone;
+            this.email = email;
+        }
+
+        var contacts = [];
+
+        function addContact(name, phone, email) {
+            let newContact = new Contact(name, phone, email);
+            contacts.push(newContact);
+            console.log("Liên lạc đã thêm:", newContact);
+        }
+
+        function findContactByName(name) {
+            let contact = contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase());
+            if (contact) {
+                console.log("Đã tìm thấy liên lạc:", contact);
+                return contact;
+            } else {
+                console.log("Không tìm thấy liên hệ với tên:", name);
+                return null;
+            }
+        }
+
+        function displayContacts() {
+            if (contacts.length === 0) {
+                console.log('Danh bạ hiện đang trống');
+            } else {
+                console.log("Danh bạ:");
+                contacts.forEach(contact => {
+                    console.log(`Tên: ${contact.name}, Số điện thoại: ${contact.phone}, Email: ${contact.email}`);
+                });
+            }
+        }
+
+        function deleteContactByName(name) {
+            let index = contacts.findIndex(contact => contact.name.toLowerCase() === name.toLowerCase());
+            if (index !== -1) {
+                let removedContact = contacts.splice(index, 1);
+                console.log("Đã xóa liên lạc:", removedContact[0]);
+            } else {
+                console.log("Không tìm thấy liên hệ với tên:", name);
+            }
+        }
+
+        function updateContactByName(name, updatedInfo) {
+            let contact = findContactByName(name);
+            if (contact) {
+                contact.name = updatedInfo.name || contact.name;
+                contact.phone = updatedInfo.phone || contact.phone;
+                contact.email = updatedInfo.email || contact.email;
+                console.log("Đã cập nhật liên lạc:", contact);
+            } else {
+                console.log("Không tìm thấy liên hệ với tên:", name);
+            }
+        }
+        
+        addContact("Vuong Thuan", "123456789", "thuan@gmail.com");
+        addContact("Ba Tung", "987654321", "tung@gmail.com");
+        displayContacts();
+        findContactByName("Vuong Thuan");
+        updateContactByName("Ba Tung", { phone: "555555555", email: "tung@gmail.com" });
+        displayContacts();
+        deleteContactByName("Vuong Thuan");
+        displayContacts();
+    </script>
+</body>
+</html>
